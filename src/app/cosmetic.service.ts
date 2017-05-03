@@ -26,6 +26,24 @@ export class CosmeticService {
         .catch(this.handleError);
   }
 
+  // getCosmeticsByCategory(idCategory: number): Promise<Cosmetic[]> {
+  //     // let allCosmetics = this.getCosmetics();
+  //     // let returnArray : Cosmetic[];
+  //     // for (let entry of allCosmetics) {
+        
+  //     // }
+  //     let Promise = this.http.get(this.cosmeticsUrl)
+  //       .toPromise()
+  //       .then(response => response.json().data as Cosmetic[])
+  //       .then(cosmetics => { return })
+  //       .catch(this.handleError);
+  //     Promise.
+  //       var uArr = [];
+  //       for(promise.data, function ( value, key ) {
+  //              uArr[value.id] = value.userName;
+  //       })
+  // }
+
   update(cosmetic: Cosmetic): Promise<Cosmetic> {
     const url = `${this.cosmeticsUrl}/${cosmetic.id}`;
     return this.http

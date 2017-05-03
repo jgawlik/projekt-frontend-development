@@ -40,7 +40,6 @@ export class CosmeticPanelComponent implements OnInit {
           .delete(cosmetic.id)
           .then(() => {
             this.cosmeticsList = this.cosmeticsList.filter(h => h !== cosmetic);
-            if (this.selectedCosmetic === cosmetic) { this.selectedCosmetic = null; }
           });
     }
 }

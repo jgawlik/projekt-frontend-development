@@ -1,7 +1,7 @@
-<div class="col-md-6">
-  <div class="panel panel-default ">
-    <div class="panel-heading"> Lista kosmetyków </div>
-    <div class="panel-body">
+<!--<div class="col-md-6">-->
+   <div class="card">
+    <div class="card-header"> Lista  kosmetyków </div>
+    <div class="card-block">
         <table class="table table-bordered">
             <thead>
               <tr> 
@@ -15,9 +15,9 @@
                 <td> <span class="badge">{{cosmetic.id}}</span> {{cosmetic.name}} </td>
                 <td> {{cosmetic.category.categoryName }} </td>
                 <td>
-                  <a class="btn btn-info" [routerLink]="['/information', cosmetic.id]" role="button">Szczegóły</a>
+                  <a class="btn btn-info"    [routerLink]="['/information', cosmetic.id]" role="button">Szczegóły</a>
                   <a class="btn btn-warning" [routerLink]="['/information', cosmetic.id]" role="button">Edycja</a>
-                  <a class="btn btn-danger" [routerLink]="['/information', cosmetic.id]" role="button">Usuń</a>
+                  <button class="btn btn-danger" (click)="delete(cosmetic); $event.stopPropagation()">Usuń</button>
                 </td>
               </tr>
             </tbody>
@@ -25,4 +25,4 @@
         <a class="btn btn-success" routerLink="/cosmetics-panel" role="button">Dodaj nowy kosmetyk </a>
     </div>
   </div>
-</div>
+<!--</div>-->
