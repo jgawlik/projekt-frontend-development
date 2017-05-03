@@ -1,0 +1,7 @@
+<h2> Lista kategori </h2>
+<ul class="categories">
+  <li *ngFor="let category of categoryList" (click)="onSelect(category)" [class.selected]="category === selectedCosmetic">
+     <span class="badge">{{category.id}}</span> {{category.categoryName}}
+  </li>
+</ul>
+

@@ -1,0 +1,16 @@
+<h2> Lista kosmetyków </h2>
+<ul class="cosmetics">
+  <li *ngFor="let cosmetic of cosmeticsList" (click)="onSelect(cosmetic)" [class.selected]="cosmetic === selectedCosmetic">
+     <span class="badge">{{cosmetic.id}}</span> {{cosmetic.name}}
+  </li>
+</ul>
+
+
+<!--<h2> Lista kosmetyków </h2>
+<div class="grid grid-pad">
+  <a *ngFor="let cosmetic of cosmeticsList" [routerLink]="['/information', cosmetic.id]"  class="col-1-4">
+     <div class="module cosmetic">
+      <h4>{{cosmetic.name}}</h4>
+    </div>
+  </a>
+</div>-->
