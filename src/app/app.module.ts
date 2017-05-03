@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { MockedDatabaseService } from './mocked-database.service';
@@ -27,6 +28,7 @@ import { CategoryService } from './category.service';
     FormsModule,
     HttpModule,
     RoutingModule,
+    NgbModule,
     InMemoryWebApiModule.forRoot(MockedDatabaseService),
   ],
   providers: [CosmeticService, CategoryService],

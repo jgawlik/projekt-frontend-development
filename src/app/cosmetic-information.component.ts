@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Cosmetic } from './data-models';
+import { Cosmetic, Category } from './data-models';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { CosmeticService } from './cosmetic.service';
@@ -9,7 +9,8 @@ import 'rxjs/add/operator/map';
 @Component({
   selector: 'app-cosmetic-information',
   templateUrl: './cosmetic-information.component.html',
-  styleUrls: ['./cosmetic-information.component.css']
+  styleUrls: ['./cosmetic-information.component.css'],
+  // providers: [Cosmetic, Category, CosmeticService]
 })
 
 export class CosmeticInformationComponent implements OnInit {
@@ -19,7 +20,7 @@ export class CosmeticInformationComponent implements OnInit {
       private CosmeticService: CosmeticService,
       private route: ActivatedRoute,
       private router: Router,
-      private location: Location
+      private location: Location,
     ) {}
 
     ngOnInit(): void {

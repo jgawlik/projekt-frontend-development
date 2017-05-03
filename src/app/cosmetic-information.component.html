@@ -8,7 +8,11 @@
   </div>
   <div>
     <label> Składniki: </label>
-    <input [(ngModel)]="cosmetic.ingredients" placeholder="ingredients"/>
+    <input [(ngModel)]="cosmetic.ingredients" placeholder="składniki"/>
+  </div>
+   <div>
+    <label> Kategoria: </label>
+    <input [(ngModel)]="cosmetic.category.categoryName" placeholder="kategoria"/>
   </div>
   <button (click)="save()">Zapisz</button>
   <button (click)="goBack()">Powrót</button>

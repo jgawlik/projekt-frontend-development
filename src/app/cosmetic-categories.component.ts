@@ -6,7 +6,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-cosmetic-categories',
   templateUrl: './cosmetic-categories.component.html',
-  styleUrls: ['./cosmetic-categories.component.css']
+  styleUrls: ['./cosmetic-categories.component.css'],
 })
 export class CosmeticCategoriesComponent implements OnInit {
   categoryList: Category[];

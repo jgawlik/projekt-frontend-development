@@ -1,16 +1,28 @@
-<h2> Lista kosmetyków </h2>
-<ul class="cosmetics">
-  <li *ngFor="let cosmetic of cosmeticsList" (click)="onSelect(cosmetic)" [class.selected]="cosmetic === selectedCosmetic">
-     <span class="badge">{{cosmetic.id}}</span> {{cosmetic.name}}
-  </li>
-</ul>
-
-
-<!--<h2> Lista kosmetyków </h2>
-<div class="grid grid-pad">
-  <a *ngFor="let cosmetic of cosmeticsList" [routerLink]="['/information', cosmetic.id]"  class="col-1-4">
-     <div class="module cosmetic">
-      <h4>{{cosmetic.name}}</h4>
+<div class="col-md-6">
+  <div class="panel panel-default ">
+    <div class="panel-heading"> Lista kosmetyków </div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <thead>
+              <tr> 
+                <th> Kosmetyk</th>
+                <th> Kategoria </th>
+                <th> Akcje </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cosmetic of cosmeticsList" (click)="onSelect(cosmetic)" [class.selected]="cosmetic === selectedCosmetic">
+                <td> <span class="badge">{{cosmetic.id}}</span> {{cosmetic.name}} </td>
+                <td> {{cosmetic.category.categoryName }} </td>
+                <td>
+                  <a class="btn btn-info" [routerLink]="['/information', cosmetic.id]" role="button">Szczegóły</a>
+                  <a class="btn btn-warning" [routerLink]="['/information', cosmetic.id]" role="button">Edycja</a>
+                  <a class="btn btn-danger" [routerLink]="['/information', cosmetic.id]" role="button">Usuń</a>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-success" routerLink="/cosmetics-panel" role="button">Dodaj nowy kosmetyk </a>
     </div>
-  </a>
-</div>-->
+  </div>
+</div>
