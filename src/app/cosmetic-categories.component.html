@@ -22,7 +22,7 @@
               <tr *ngFor="let category of categoryList">
                 <td> <span class="badge"> {{category.id}} </span> {{category.categoryName}} </td>
                 <td>
-                  <a class="btn btn-warning" [routerLink]="['/information', category.id]" role="button">Edycja</a>
+                  <a class="btn btn-warning" [routerLink]="['/categories/details', category.id]" role="button">Edycja</a>
                   <button class="btn btn-danger" (click)="delete(category); $event.stopPropagation()">Usuń</button>
                 </td>
               </tr>

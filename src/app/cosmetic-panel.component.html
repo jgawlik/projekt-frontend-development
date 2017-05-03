@@ -11,7 +11,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let cosmetic of cosmeticsList" (click)="onSelect(cosmetic)" [class.selected]="cosmetic === selectedCosmetic">
+              <tr *ngFor="let cosmetic of cosmeticsList">
                 <td> <span class="badge">{{cosmetic.id}}</span> {{cosmetic.name}} </td>
                 <td> {{cosmetic.category.categoryName }} </td>
                 <td>

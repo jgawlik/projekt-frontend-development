@@ -10,7 +10,6 @@ import 'rxjs/add/operator/map';
   selector: 'app-cosmetic-information',
   templateUrl: './cosmetic-information.component.html',
   styleUrls: ['./cosmetic-information.component.css'],
-  // providers: [Cosmetic, Category, CosmeticService]
 })
 
 export class CosmeticInformationComponent implements OnInit {

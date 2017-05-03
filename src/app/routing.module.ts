@@ -7,11 +7,13 @@ import { CosmeticInformationComponent } from './cosmetic-information.component';
 import { CosmeticService } from './cosmetic.service';
 import { CosmeticPanelComponent } from './cosmetic-panel.component';
 import { CosmeticCategoriesComponent } from './cosmetic-categories.component';
+import { CosmeticCategoriesDetailsComponent } from './cosmetic-categories-details.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/cosmetics-panel', pathMatch: 'full' },
   { path: 'cosmetics-panel', component: CosmeticPanelComponent },
   { path: 'categories', component: CosmeticCategoriesComponent },
-  { path: '', redirectTo: '/cosmetics-panel', pathMatch: 'full' },
+  { path: 'categories/details/:idCategory', component: CosmeticCategoriesDetailsComponent },
   { path: 'information/:id', component: CosmeticInformationComponent },
 ];
 

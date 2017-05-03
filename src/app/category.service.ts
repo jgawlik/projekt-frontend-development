@@ -34,6 +34,15 @@ export class CategoryService {
       .catch(this.handleError);
   }
 
+  update(category: Category): Promise<Category> {
+    const url = `${this.categoriesUrl}/${category.id}`;
+    return this.http
+      .put(url, JSON.stringify(category), {headers: this.headers})
+      .toPromise()
+      .then(() => category)
+      .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('Wystąpił błąd', error);
     return Promise.reject(error.message || error);

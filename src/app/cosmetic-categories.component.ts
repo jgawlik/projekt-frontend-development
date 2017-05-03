@@ -37,7 +37,7 @@ export class CosmeticCategoriesComponent implements OnInit {
     returnArray = [];
     if (this.cosmeticsList) {
       for (let entry of this.cosmeticsList) {
-        if (entry.category.id == categoryId) {
+        if (entry.category.id === categoryId) {
             returnArray.push(entry);
         }
       }
@@ -48,7 +48,7 @@ export class CosmeticCategoriesComponent implements OnInit {
   delete(category: Category): void {
     const ifAnyCosmeticHasThisCat = this.getCosmeticsByCategory(category.id);
     this.message = 'Nie można usunąć kategori o id ' + category.id + ' ponieważ istnieje kosmetyk mający przypisaną taka kategorię!';
-    if (ifAnyCosmeticHasThisCat.length == 0) {
+    if (ifAnyCosmeticHasThisCat.length === 0) {
       this.CategoryService
           .delete(category.id)
           .then(() => {

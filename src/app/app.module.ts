@@ -11,6 +11,7 @@ import { CosmeticInformationComponent } from './cosmetic-information.component';
 import { CosmeticService } from './cosmetic.service';
 import { CosmeticPanelComponent } from './cosmetic-panel.component';
 import { CosmeticCategoriesComponent } from './cosmetic-categories.component';
+import { CosmeticCategoriesDetailsComponent } from './cosmetic-categories-details.component';
 
 import { RoutingModule } from './routing.module';
 import { CategoryService } from './category.service';
@@ -21,6 +22,7 @@ import { CategoryService } from './category.service';
     CosmeticInformationComponent,
     CosmeticPanelComponent,
     CosmeticCategoriesComponent,
+    CosmeticCategoriesDetailsComponent,
   ],
   imports: [
     BrowserModule,

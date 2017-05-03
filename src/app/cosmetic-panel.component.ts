@@ -20,7 +20,7 @@ export class CosmeticPanelComponent implements OnInit {
     ) { }
 
   getCosmetics(): void {
-    //Bez użycia Promise
+    // Bez użycia Promise
     // this.cosmeticsList = this.CosmeticService.getCosmetics();
      this.CosmeticService
         .getCosmetics()
@@ -31,9 +31,9 @@ export class CosmeticPanelComponent implements OnInit {
     this.getCosmetics();
   }
 
-  onSelect(cosmetic: Cosmetic) {
-    this.router.navigate(['/information', cosmetic.id]);
-  }
+  // onSelect(cosmetic: Cosmetic) {
+  //   this.router.navigate(['/information', cosmetic.id]);
+  // }
 
   delete(cosmetic: Cosmetic): void {
       this.CosmeticService

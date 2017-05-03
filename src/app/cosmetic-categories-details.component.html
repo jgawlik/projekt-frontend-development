@@ -1,0 +1,23 @@
+<div class="col-md-12">
+
+  <div class="card" *ngIf="category;else button_back">
+    <div class="card-header"> Edycja kategori o id {{category.id}} </div>
+    <div class="card-block">
+        <form #categoryForm="ngForm" (ngSubmit)="save()">
+          <div class="form-group">
+            <label for="categoryName"> Nazwa kategorii </label>
+            <input [(ngModel)]="category.categoryName" type="text" class="form-control" id="categoryName" name="categoryName" placeholder="nazwa kategorii">
+          </div>
+          <button type="submit" class="btn btn-primary">Zapisz</button>
+          <button type="button" class="btn btn-secondary" (click)="goBack()">Powrót</button>
+        </form>
+      </div>
+  </div>
+  <ng-template #button_back>
+     <div class="card">
+       <div class="card-block">
+        <button type="button" class="btn btn-secondary" (click)="goBack()">Powrót</button>
+       </div>
+     </div>
+     </ng-template>
+</div>
