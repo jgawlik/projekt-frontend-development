@@ -13,6 +13,7 @@ export class CosmeticCategoriesComponent implements OnInit {
   categoryList: Category[];
   cosmeticsList: Cosmetic[];
   message: string;
+  showForm: boolean = false;
 
   constructor(
     private router: Router,
@@ -43,6 +44,21 @@ export class CosmeticCategoriesComponent implements OnInit {
       }
     }
       return returnArray;
+  }
+
+
+
+  addNewCategory(categoryName: string, event: Event): void {
+    event.preventDefault();
+    categoryName = categoryName.trim();
+    if (!categoryName || categoryName.length === 0) {
+      return;
+    }
+    this.CategoryService.create(categoryName)
+      .then(category => {
+        this.categoryList.push(category);
+        this.showForm = false;
+      });
   }
 
   delete(category: Category): void {

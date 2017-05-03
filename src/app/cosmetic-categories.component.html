@@ -28,7 +28,17 @@
               </tr>
             </tbody>
         </table>
-        <a class="btn btn-success" routerLink="/cosmetics-panel" role="button">Dodaj nową kategorię </a>
+        <a class="btn btn-success" (click)="showForm = true" role="button">Dodaj nową kategorię </a>
+
+        <div [hidden]="!showForm">
+          <form #categoryForm="ngForm" (ngSubmit)="addNewCategory(categoryName.value, $event)">
+            <div class="form-group">
+              <label for="categoryName"> Nazwa kategorii </label>
+              <input #categoryName type="text" class="form-control" id="categoryName" name="categoryName" placeholder="nazwa kategorii">
+            </div>
+            <button type="submit" class="btn btn-primary">Dodaj</button>
+          </form>
+        </div>
     </div>
   </div>
 <!--</div>-->

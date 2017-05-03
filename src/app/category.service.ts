@@ -43,6 +43,13 @@ export class CategoryService {
       .catch(this.handleError);
   }
 
+  create(categoryName: string): Promise<Category> {
+      return this.http
+        .post(this.categoriesUrl, JSON.stringify({categoryName: categoryName}), {headers: this.headers})
+        .toPromise()
+        .then(res => res.json().data as Category)
+        .catch(this.handleError);
+  }
   private handleError(error: any): Promise<any> {
     console.error('Wystąpił błąd', error);
     return Promise.reject(error.message || error);
