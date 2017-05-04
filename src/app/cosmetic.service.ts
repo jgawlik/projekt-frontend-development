@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 import { Cosmetic } from './data-models';
 
@@ -23,6 +26,13 @@ export class CosmeticService {
       return this.http.get(url)
         .toPromise()
         .then(response => response.json().data as Cosmetic)
+        .catch(this.handleError);
+  }
+
+  getCosmeticObservable(id: number): Observable<Cosmetic> {
+      const url = `${this.cosmeticsUrl}/${id}`;
+      return this.http.get(url)
+        .map(response => response.json().data as Cosmetic)
         .catch(this.handleError);
   }
 

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CosmeticInformationComponent } from './cosmetic-information.component';
 import { CosmeticService } from './cosmetic.service';
 import { CosmeticPanelComponent } from './cosmetic-panel.component';
+import { CosmeticProductComponent } from './cosmetic-product.component';
 import { CosmeticCategoriesComponent } from './cosmetic-categories.component';
 import { CosmeticCategoriesDetailsComponent } from './cosmetic-categories-details.component';
 
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'categories', component: CosmeticCategoriesComponent },
   { path: 'categories/details/:idCategory', component: CosmeticCategoriesDetailsComponent },
   { path: 'information/:id', component: CosmeticInformationComponent },
+  { path: 'product/:id', component: CosmeticProductComponent },
 ];
 
 @NgModule({

@@ -15,7 +15,7 @@
                 <td> <span class="badge">{{cosmetic.id}}</span> {{cosmetic.name}} </td>
                 <td> {{cosmetic.category.categoryName }} </td>
                 <td>
-                  <a class="btn btn-info"    [routerLink]="['/information', cosmetic.id]" role="button">Szczegóły</a>
+                  <a class="btn btn-info"    [routerLink]="['/product', cosmetic.id]" role="button">Szczegóły</a>
                   <a class="btn btn-warning" [routerLink]="['/information', cosmetic.id]" role="button">Edycja</a>
                   <button class="btn btn-danger" (click)="delete(cosmetic); $event.stopPropagation()">Usuń</button>
                 </td>

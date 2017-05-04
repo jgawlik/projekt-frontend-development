@@ -46,7 +46,9 @@ export class Review {
   public review: string;
   public nickname: string;
   public cosmetic: Cosmetic;
+  public raiting: number;
 
+  // constructor(@Inject(forwardRef(() => Cosmetic)) cosmetic: Cosmetic) { this.cosmetic = cosmetic; }
   // constructor(id: number, review: string, nickname: string, cosmetic: Cosmetic) {
   //     this.id = id;
   //     this.review = review;
@@ -54,3 +56,5 @@ export class Review {
   //     this.cosmetic = cosmetic;
   // }
 }
+
+export const raitings = [1, 2, 3, 4, 5];

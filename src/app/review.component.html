@@ -1,0 +1,24 @@
+<div class="card" *ngIf="reviews">
+  <div class="card-header"> Recenzje kosmetyku </div>
+  <div class="card-block">
+    <table class="table table-bordered" *ngIf="reviews.length > 0; else empty_reviews">
+      <thead>
+        <tr>
+          <th> Nick </th>
+          <th> Recenzja </th>
+          <th> Ocena </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rev of reviews">
+          <td> {{rev.nickname}} </td>
+          <td> {{rev.review}} </td>
+          <td> {{rev.raiting}} </td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #empty_reviews>
+         Brak recenzji dla tego kosmetyku!
+    </ng-template>
+  </div>
+</div>
