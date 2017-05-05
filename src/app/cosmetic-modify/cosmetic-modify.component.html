@@ -1,19 +1,38 @@
-<div *ngIf="cosmetic">
-
-  <h2>{{cosmetic.name}} szczegóły</h2>
-  <div><label>Identyfikator: </label>{{cosmetic.id}}</div>
-  <div>
-      <label> Nazwa: </label>
-      <input [(ngModel)]="cosmetic.name" placeholder="name"/>
+  <div class="card" *ngIf="cosmetic;else button_back">
+    <div class="card-header"> Edycja kosmetyku o id {{cosmetic.id}} </div>
+    <div class="card-block">
+      <form [formGroup]="myForm" (ngSubmit)="save()">
+        <div class="form-group">
+          <label for="name"> Nazwa </label>
+          <input [formControl]="myForm.controls['name']" type="text" class="form-control" id="name" name="name">
+        </div>
+        <div class="form-group">
+          <label for="ingredients"> Składniki </label>
+          <input [formControl]="myForm.controls['ingredients']" type="text" class="form-control" id="ingredients" name="ingredients">
+        </div>
+        <div class="form-group">
+          <label for="producer"> Marka </label>
+          <input [formControl]="myForm.controls['producer']" type="text" class="form-control" id="producer" name="producer">
+        </div>
+        <div class="form-group">
+          <label for="price"> Cena </label>
+          <input [formControl]="myForm.controls['price']" type="text" class="form-control" id="price" name="price">
+        </div>
+        <div class="form-group">
+          <label for="category"> Kategoria </label>
+          <select class="form-control" [formControl]="myForm.controls['category']" id="category" required>
+             <option *ngFor="let cat of categories" [ngValue]="cat.id"> {{cat.categoryName}} </option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Zapisz</button>
+        <button type="button" class="btn btn-secondary" (click)="goBack()">Powrót</button>
+      </form>
+    </div>
   </div>
-  <div>
-    <label> Składniki: </label>
-    <input [(ngModel)]="cosmetic.ingredients" placeholder="składniki"/>
-  </div>
-   <div>
-    <label> Kategoria: </label>
-    <input [(ngModel)]="cosmetic.category.categoryName" placeholder="kategoria"/>
-  </div>
-  <button (click)="save()">Zapisz</button>
-  <button (click)="goBack()">Powrót</button>
-</div>
+  <ng-template #button_back>
+    <div class="card">
+      <div class="card-block">
+        <button type="button" class="btn btn-secondary" (click)="goBack()">Powrót</button>
+      </div>
+    </div>
+  </ng-template>

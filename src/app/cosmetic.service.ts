@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 import { Cosmetic } from './data-models';
 
@@ -14,18 +14,16 @@ export class CosmeticService {
 
   constructor(private http: Http) { }
 
-  getCosmetics(): Promise<Cosmetic[]> {
+  getCosmetics(): Observable<Cosmetic[]> {
     return this.http.get(this.cosmeticsUrl)
-                .toPromise()
-                .then(response => response.json().data as Cosmetic[])
+                .map(response => response.json().data as Cosmetic[])
                 .catch(this.handleError);
   }
 
-  getCosmetic(id: number): Promise<Cosmetic> {
+  getCosmetic(id: number): Observable<Cosmetic> {
       const url = `${this.cosmeticsUrl}/${id}`;
       return this.http.get(url)
-        .toPromise()
-        .then(response => response.json().data as Cosmetic)
+        .map(response => response.json().data as Cosmetic)
         .catch(this.handleError);
   }
 
@@ -36,53 +34,52 @@ export class CosmeticService {
         .catch(this.handleError);
   }
 
-  // getCosmeticsByCategory(idCategory: number): Promise<Cosmetic[]> {
+  update(cosmetic: Cosmetic): Observable<Cosmetic> {
+    const url = `${this.cosmeticsUrl}/${cosmetic.id}`;
+    return this.http
+      .put(url, JSON.stringify(cosmetic), {headers: this.headers})
+      .map(() => cosmetic)
+      .catch(this.handleError);
+  }
+
+  create(name: string): Observable<Cosmetic> {
+      return this.http
+        .post(this.cosmeticsUrl, JSON.stringify({name: name}), {headers: this.headers})
+        .map(res => res.json().data as Cosmetic)
+        .catch(this.handleError);
+  }
+
+  delete(id: number): Observable<void> {
+    const url = `${this.cosmeticsUrl}/${id}`;
+    return this.http.delete(url, {headers: this.headers})
+      .map(() => null)
+      .catch(this.handleError);
+  }
+
+  private handleError(error: any): Observable<any> {
+    console.error('Wystąpił błąd', error);
+    return Observable.throw(error.message || error);
+  }
+
+
+  // getCosmeticsByCategory(idCategory: number): Observable<Cosmetic[]> {
   //     // let allCosmetics = this.getCosmetics();
   //     // let returnArray : Cosmetic[];
   //     // for (let entry of allCosmetics) {
         
   //     // }
-  //     let Promise = this.http.get(this.cosmeticsUrl)
-  //       .toPromise()
-  //       .then(response => response.json().data as Cosmetic[])
-  //       .then(cosmetics => { return })
+  //     let Observable = this.http.get(this.cosmeticsUrl)
+  //       
+  //       .map(response => response.json().data as Cosmetic[])
+  //       .map(cosmetics => { return })
   //       .catch(this.handleError);
-  //     Promise.
+  //     Observable.
   //       var uArr = [];
   //       for(promise.data, function ( value, key ) {
   //              uArr[value.id] = value.userName;
   //       })
   // }
 
-  update(cosmetic: Cosmetic): Promise<Cosmetic> {
-    const url = `${this.cosmeticsUrl}/${cosmetic.id}`;
-    return this.http
-      .put(url, JSON.stringify(cosmetic), {headers: this.headers})
-      .toPromise()
-      .then(() => cosmetic)
-      .catch(this.handleError);
-  }
-
-  create(name: string): Promise<Cosmetic> {
-      return this.http
-        .post(this.cosmeticsUrl, JSON.stringify({name: name}), {headers: this.headers})
-        .toPromise()
-        .then(res => res.json().data as Cosmetic)
-        .catch(this.handleError);
-  }
-
-  delete(id: number): Promise<void> {
-    const url = `${this.cosmeticsUrl}/${id}`;
-    return this.http.delete(url, {headers: this.headers})
-      .toPromise()
-      .then(() => null)
-      .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('Wystąpił błąd', error);
-    return Promise.reject(error.message || error);
-  }
   // getCosmetics(): Cosmetic[] {
   //   return COSMETICS;
   // }
@@ -90,13 +87,13 @@ export class CosmeticService {
   // getCosmetic(id: number) {
   //     return this.getCosmetics().find(cosmetic => cosmetic.id === id);
   // }
-  // getCosmetics(): Promise<Cosmetic[]> {
-    // return Promise.resolve(COSMETICS);
+  // getCosmetics(): Observable<Cosmetic[]> {
+    // return Observable.resolve(COSMETICS);
   // }
 
-  // getCosmetic(id: number): Promise<Cosmetic> {
+  // getCosmetic(id: number): Observable<Cosmetic> {
       // return this.getCosmetics()
-                //  .then(cosmetics => cosmetics.find(cosmetic => cosmetic.id === id));
+                //  .map(cosmetics => cosmetics.find(cosmetic => cosmetic.id === id));
     // }
 }
 

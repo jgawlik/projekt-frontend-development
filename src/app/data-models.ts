@@ -1,10 +1,10 @@
 export class Cosmetic {
   public id: number;
   public name: string;
-  public category: Category;
   public ingredients: string;
   public producer: string;
   public price: number;
+  public category: Category;
 
   // constructor (cosmetic: any) {
   //    if (cosmetic) {

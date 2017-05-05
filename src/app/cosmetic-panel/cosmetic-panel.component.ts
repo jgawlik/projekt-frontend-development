@@ -18,11 +18,9 @@ export class CosmeticPanelComponent implements OnInit {
     ) { }
 
   getCosmetics(): void {
-    // Bez użycia Promise
-    // this.cosmeticsList = this.CosmeticService.getCosmetics();
      this.CosmeticService
         .getCosmetics()
-        .then(cosmetics => this.cosmeticsList = cosmetics);
+        .subscribe(cosmetics => this.cosmeticsList = cosmetics);
   }
 
   ngOnInit(): void {
@@ -36,7 +34,7 @@ export class CosmeticPanelComponent implements OnInit {
   delete(cosmetic: Cosmetic): void {
       this.CosmeticService
           .delete(cosmetic.id)
-          .then(() => {
+          .subscribe(() => {
             this.cosmeticsList = this.cosmeticsList.filter(h => h !== cosmetic);
           });
     }

@@ -1,28 +1,26 @@
-<!--<div class="col-md-6">-->
-   <div class="card">
-    <div class="card-header"> Lista  kosmetyków </div>
-    <div class="card-block">
-        <table class="table table-bordered">
-            <thead>
-              <tr> 
-                <th> Kosmetyk</th>
-                <th> Kategoria </th>
-                <th> Akcje </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let cosmetic of cosmeticsList">
-                <td> <span class="badge">{{cosmetic.id}}</span> {{cosmetic.name}} </td>
-                <td> {{cosmetic.category.categoryName }} </td>
-                <td>
-                  <a class="btn btn-info"    [routerLink]="['/product', cosmetic.id]" role="button">Szczegóły</a>
-                  <a class="btn btn-warning" [routerLink]="['/details', cosmetic.id]" role="button">Edycja</a>
-                  <button class="btn btn-danger" (click)="delete(cosmetic); $event.stopPropagation()">Usuń</button>
-                </td>
-              </tr>
-            </tbody>
-        </table>
-        <a class="btn btn-success" routerLink="/cosmetics-panel" role="button">Dodaj nowy kosmetyk </a>
-    </div>
+<div class="card">
+  <div class="card-header"> Lista kosmetyków </div>
+  <div class="card-block">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th> Kosmetyk</th>
+          <th> Kategoria </th>
+          <th> Akcje </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cosmetic of cosmeticsList">
+          <td> <span class="badge">{{cosmetic.id}}</span> {{cosmetic.name}} </td>
+          <td> {{cosmetic.category.categoryName }} </td>
+          <td>
+            <a class="btn btn-info" [routerLink]="['/product', cosmetic.id]" role="button">Szczegóły</a>
+            <a class="btn btn-warning" [routerLink]="['/details', cosmetic.id]" role="button">Edycja</a>
+            <button class="btn btn-danger" (click)="delete(cosmetic); $event.stopPropagation()">Usuń</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a class="btn btn-success" routerLink="/cosmetics-panel" role="button">Dodaj nowy kosmetyk </a>
   </div>
-<!--</div>-->
+</div>

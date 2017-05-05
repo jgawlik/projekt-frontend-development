@@ -10,7 +10,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./category-panel.component.css']
 })
 export class CategoryPanelComponent implements OnInit {
-
   categoryList: Category[];
   cosmeticsList: Cosmetic[];
   message: string;
@@ -30,7 +29,7 @@ export class CategoryPanelComponent implements OnInit {
   getCosmetics(): void {
      this.CosmeticService
         .getCosmetics()
-        .then(cosmetics => this.cosmeticsList = cosmetics);
+        .subscribe(cosmetics => this.cosmeticsList = cosmetics);
   }
 
   // Zwracamy albo pusty array albo array z elemntami, jesli mają żądaną kategorię
