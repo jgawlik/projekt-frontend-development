@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from './../data-models';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
-import { CategoryService } from './../category.service';
+import { CategoryService } from './../services/category.service';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 

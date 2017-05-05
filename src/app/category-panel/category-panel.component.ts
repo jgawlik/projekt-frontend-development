@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category, Cosmetic } from './../data-models';
-import { CategoryService } from './../category.service';
-import { CosmeticService } from './../cosmetic.service';
+import { CategoryService } from './../services/category.service';
+import { CosmeticService } from './../services/cosmetic.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({

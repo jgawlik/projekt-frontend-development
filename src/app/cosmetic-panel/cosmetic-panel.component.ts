@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cosmetic } from './../data-models';
-import { CosmeticService } from './../cosmetic.service';
+import { CosmeticService } from './../services/cosmetic.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({

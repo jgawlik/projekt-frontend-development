@@ -14,9 +14,9 @@ import { CategoryPanelComponent } from './category-panel/category-panel.componen
 import { CategoryModifyComponent } from './category-modify/category-modify.component';
 
 import { RoutingModule } from './routing.module';
-import { CategoryService } from './category.service';
-import { ReviewService } from './review.service';
-import { CosmeticService } from './cosmetic.service';
+import { CategoryService } from './services/category.service';
+import { ReviewService } from './services/review.service';
+import { CosmeticService } from './services/cosmetic.service';
 import { CosmeticAddComponent } from './cosmetic-add/cosmetic-add.component';
 
 @NgModule({

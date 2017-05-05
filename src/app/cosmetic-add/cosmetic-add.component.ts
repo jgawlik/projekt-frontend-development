@@ -3,8 +3,9 @@ import { FormControl, FormGroup, FormBuilder, AbstractControl, Validators } from
 import { Cosmetic, Category } from './../data-models';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
-import { CosmeticService } from './../cosmetic.service';
-import { CategoryService } from './../category.service';
+import { CosmeticService } from './../services/cosmetic.service';
+import { CategoryService } from './../services/category.service';
+import { formErrors, validationMessages } from './../various/validationCosmetic';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 
@@ -50,7 +51,7 @@ export class CosmeticAddComponent implements OnInit {
           'name': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
           'ingredients': ['', Validators.required],
           'producer': ['', Validators.required],
-          'price': [null, Validators.required],
+          'price': [null, Validators.required, Validators.pattern('\d*\.?\d*')],
           'category': [null, Validators.required],
         });
   }
@@ -68,5 +69,4 @@ export class CosmeticAddComponent implements OnInit {
   goBack(): void {
         this.location.back();
   }
-
 }

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, AbstractControl, Validators } from '@angular/forms';
 import { Cosmetic, Category } from './../data-models';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
-import { CosmeticService } from './../cosmetic.service';
-import { CategoryService } from './../category.service';
+import { CosmeticService } from './../services/cosmetic.service';
+import { CategoryService } from './../services/category.service';
+import { formErrors, validationMessages } from './../various/validationCosmetic';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 
@@ -24,7 +25,7 @@ export class CosmeticModifyComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) { }
 
   getCategories(): void {
@@ -65,12 +66,13 @@ export class CosmeticModifyComponent implements OnInit {
     this.CosmeticService.update(this.cosmetic)
       .subscribe(() => this.goBack());
   }
-   prepareCosmeticToSave(): Cosmetic {
+
+  prepareCosmeticToSave(): Cosmetic {
     const formModel = this.myForm.value;
     const saveCosmetic: Cosmetic = {
       id: this.cosmetic.id,
-      ingredients: formModel.ingredients as string,
       name: formModel.name as string,
+      ingredients: formModel.ingredients as string,
       price: formModel.price as number,
       producer: formModel.producer as string,
       category: this.getCategoryById(formModel.category) as Category
@@ -80,7 +82,6 @@ export class CosmeticModifyComponent implements OnInit {
   }
 
   goBack(): void {
-        this.location.back();
+    this.location.back();
   }
-
 }
