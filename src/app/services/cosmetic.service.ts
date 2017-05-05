@@ -5,7 +5,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-import { Cosmetic, Category } from './data-models';
+import { Cosmetic, Category } from './../data-models';
 
 @Injectable()
 export class CosmeticService {
