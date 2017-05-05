@@ -17,6 +17,7 @@ import { RoutingModule } from './routing.module';
 import { CategoryService } from './category.service';
 import { ReviewService } from './review.service';
 import { CosmeticService } from './cosmetic.service';
+import { CosmeticAddComponent } from './cosmetic-add/cosmetic-add.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CosmeticService } from './cosmetic.service';
     CosmeticModifyComponent,
     CategoryPanelComponent,
     CategoryModifyComponent,
+    CosmeticAddComponent,
   ],
   imports: [
     BrowserModule,

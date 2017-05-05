@@ -5,17 +5,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CosmeticPanelComponent } from './cosmetic-panel/cosmetic-panel.component';
 import { CosmeticModifyComponent } from './cosmetic-modify/cosmetic-modify.component';
+import { CosmeticAddComponent } from './cosmetic-add/cosmetic-add.component';
 import { CosmeticProductComponent } from './cosmetic-product/cosmetic-product.component';
 import { CategoryPanelComponent } from './category-panel/category-panel.component';
 import { CategoryModifyComponent } from './category-modify/category-modify.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/cosmetics-panel', pathMatch: 'full' },
-  { path: 'cosmetics-panel', component: CosmeticPanelComponent },
+  { path: '', redirectTo: '/cosmetics', pathMatch: 'full' },
+  { path: 'cosmetics', component: CosmeticPanelComponent },
   { path: 'categories', component: CategoryPanelComponent },
   { path: 'categories/details/:idCategory', component: CategoryModifyComponent },
-  { path: 'details/:id', component: CosmeticModifyComponent },
-  { path: 'product/:id', component: CosmeticProductComponent },
+  { path: 'cosmetics/details/:id', component: CosmeticModifyComponent },
+  { path: 'cosmetics/add', component: CosmeticAddComponent },
+  { path: 'cosmetics/product/:id', component: CosmeticProductComponent },
 ];
 
 @NgModule({

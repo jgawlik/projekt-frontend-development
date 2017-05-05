@@ -5,7 +5,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-import { Cosmetic } from './data-models';
+import { Cosmetic, Category } from './data-models';
 
 @Injectable()
 export class CosmeticService {
@@ -42,9 +42,12 @@ export class CosmeticService {
       .catch(this.handleError);
   }
 
-  create(name: string): Observable<Cosmetic> {
+  create(name: string, ingredients: string, price: number, producer: string, category: Category): Observable<Cosmetic> {
       return this.http
-        .post(this.cosmeticsUrl, JSON.stringify({name: name}), {headers: this.headers})
+        .post(this.cosmeticsUrl, JSON.stringify({
+          name: name,
+          ingredients: ingredients, price: price, producer: producer, category: category
+        }), {headers: this.headers})
         .map(res => res.json().data as Cosmetic)
         .catch(this.handleError);
   }

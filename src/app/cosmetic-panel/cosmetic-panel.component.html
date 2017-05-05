@@ -14,13 +14,13 @@
           <td> <span class="badge">{{cosmetic.id}}</span> {{cosmetic.name}} </td>
           <td> {{cosmetic.category.categoryName }} </td>
           <td>
-            <a class="btn btn-info" [routerLink]="['/product', cosmetic.id]" role="button">Szczegóły</a>
-            <a class="btn btn-warning" [routerLink]="['/details', cosmetic.id]" role="button">Edycja</a>
+            <a class="btn btn-info" [routerLink]="['/cosmetics/product', cosmetic.id]" role="button">Szczegóły</a>
+            <a class="btn btn-warning" [routerLink]="['/cosmetics/details', cosmetic.id]" role="button">Edycja</a>
             <button class="btn btn-danger" (click)="delete(cosmetic); $event.stopPropagation()">Usuń</button>
           </td>
         </tr>
       </tbody>
     </table>
-    <a class="btn btn-success" routerLink="/cosmetics-panel" role="button">Dodaj nowy kosmetyk </a>
+    <a class="btn btn-success" routerLink="/cosmetics/add" role="button">Dodaj nowy kosmetyk </a>
   </div>
 </div>
