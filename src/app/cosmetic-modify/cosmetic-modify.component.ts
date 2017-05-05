@@ -1,19 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Cosmetic, Category } from './data-models';
+import { Component, OnInit } from '@angular/core';
+import { Cosmetic, Category } from './../data-models';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
-import { CosmeticService } from './cosmetic.service';
+import { CosmeticService } from './../cosmetic.service';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 
 @Component({
-  selector: 'app-cosmetic-information',
-  templateUrl: './cosmetic-information.component.html',
-  styleUrls: ['./cosmetic-information.component.css'],
+  selector: 'app-cosmetic-modify',
+  templateUrl: './cosmetic-modify.component.html',
+  styleUrls: ['./cosmetic-modify.component.css']
 })
+export class CosmeticModifyComponent implements OnInit {
 
-export class CosmeticInformationComponent implements OnInit {
-    cosmetic: Cosmetic;
+   cosmetic: Cosmetic;
 
     constructor(
       private CosmeticService: CosmeticService,
@@ -38,4 +38,5 @@ export class CosmeticInformationComponent implements OnInit {
     goBack(): void {
       this.location.back();
     }
+
 }

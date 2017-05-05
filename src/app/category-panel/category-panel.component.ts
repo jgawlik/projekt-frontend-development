@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Category, Cosmetic } from './data-models';
-import { CategoryService } from './category.service';
-import { CosmeticService } from './cosmetic.service';
+import { Category, Cosmetic } from './../data-models';
+import { CategoryService } from './../category.service';
+import { CosmeticService } from './../cosmetic.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
-  selector: 'app-cosmetic-categories',
-  templateUrl: './cosmetic-categories.component.html',
-  styleUrls: ['./cosmetic-categories.component.css'],
+  selector: 'app-category-panel',
+  templateUrl: './category-panel.component.html',
+  styleUrls: ['./category-panel.component.css']
 })
-export class CosmeticCategoriesComponent implements OnInit {
+export class CategoryPanelComponent implements OnInit {
+
   categoryList: Category[];
   cosmeticsList: Cosmetic[];
   message: string;
@@ -78,4 +79,5 @@ export class CosmeticCategoriesComponent implements OnInit {
     this.getCategories();
     this.getCosmetics();
   }
+
 }

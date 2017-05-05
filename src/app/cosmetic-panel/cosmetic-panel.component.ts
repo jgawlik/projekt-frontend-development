@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Cosmetic } from './data-models';
-import { CosmeticService } from './cosmetic.service';
+import { Cosmetic } from './../data-models';
+import { CosmeticService } from './../cosmetic.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-cosmetic-panel',
   templateUrl: './cosmetic-panel.component.html',
-  styleUrls: ['./cosmetic-panel.component.css'],
-  providers: [CosmeticService],
+  styleUrls: ['./cosmetic-panel.component.css']
 })
 export class CosmeticPanelComponent implements OnInit {
-  // kosmetyk = new Cosmetic(1, 'Puder ryżowy');
   cosmeticsList: Cosmetic[];
   selectedCosmetic: Cosmetic;
 
@@ -42,4 +40,5 @@ export class CosmeticPanelComponent implements OnInit {
             this.cosmeticsList = this.cosmeticsList.filter(h => h !== cosmetic);
           });
     }
+
 }

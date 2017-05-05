@@ -1,0 +1,56 @@
+<div *ngIf="cosmetic">
+  <div class="card">
+    <div class="card-header"> {{cosmetic.name}} </div>
+    <div class="card-block">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th> Kategoria </th>
+            <th> Składniki </th>
+            <th> Marka </th>
+            <th> Cena </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> {{cosmetic.category.categoryName }} </td>
+            <td> {{cosmetic.ingredients}} </td>
+            <td> {{cosmetic.producer}} </td>
+            <td> {{cosmetic.price}} </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--<app-review [data]="cosmetic" [allReviews] = "allReviews"></app-review>-->
+
+    <div class="card" *ngIf="reviewsForCosmetic">
+      <div class="card-header"> Recenzje kosmetyku </div>
+      <div class="card-block">
+        <table class="table table-bordered" *ngIf="reviewsForCosmetic.length > 0; else empty_reviews">
+          <thead>
+            <tr>
+              <th> Nick </th>
+              <th> Recenzja </th>
+              <th> Ocena </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let rev of reviewsForCosmetic">
+              <td> {{rev.nickname}} </td>
+              <td> {{rev.review}} </td>
+              <td> {{rev.raiting}} </td>
+            </tr>
+          </tbody>
+        </table>
+        <ng-template #empty_reviews>
+          Brak recenzji dla tego kosmetyku!
+        </ng-template>
+      </div>
+    </div>
+
+  </div>
+  <div class="card">
+    <div class="card-block">
+      <button type="button" class="btn btn-secondary" (click)="goBack()">Powrót</button>
+    </div>
+  </div>

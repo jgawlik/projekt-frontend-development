@@ -3,6 +3,8 @@ import { Headers, Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeAll';
+
 
 import { Review, Cosmetic } from './data-models';
 
@@ -13,6 +15,14 @@ export class ReviewService {
 
   constructor(private http: Http) { }
 
+  getReviewsForCosmetic(cosmeticId: number) {
+    return this.http.get(this.reviewsUrl)
+      .map(res => <Review[]> res.json().data)
+      .map((reviews) => {
+        return reviews.filter((reviews) => reviews.cosmetic.id === cosmeticId);
+          })
+      .catch(this.handleError);
+  }
   getReviews(): Observable<Review[]> {
     return this.http.get(this.reviewsUrl)
       .map(response => response.json().data as Review[])

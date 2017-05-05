@@ -16,7 +16,7 @@ export class MockedDatabaseService implements InMemoryDbService {
     let reviews: Review[] = [
       { id: 1, review: 'Fajne', nickname: 'Maria', raiting: 5, cosmetic: cosmetics[0] },
       { id: 2, review: 'Nie podoba mi się', nickname: 'Ela', raiting: 1, cosmetic: cosmetics[1] },
-      // { id: 3, review: 'Może być', nickname: 'NoName', raiting: 3, cosmetic: cosmetics[2] },
+      { id: 3, review: 'Może być', nickname: 'NoName', raiting: 3, cosmetic: cosmetics[2] },
     ];
     return { categories, cosmetics, reviews };
   }

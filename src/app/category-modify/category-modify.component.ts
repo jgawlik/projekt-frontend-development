@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from './data-models';
+import { Category } from './../data-models';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
-import { CategoryService } from './category.service';
+import { CategoryService } from './../category.service';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 
 @Component({
-  selector: 'app-cosmetic-categories-details',
-  templateUrl: './cosmetic-categories-details.component.html',
-  styleUrls: ['./cosmetic-categories-details.component.css']
+  selector: 'app-category-modify',
+  templateUrl: './category-modify.component.html',
+  styleUrls: ['./category-modify.component.css']
 })
-export class CosmeticCategoriesDetailsComponent implements OnInit {
+export class CategoryModifyComponent implements OnInit {
    category: Category;
 
    constructor(
