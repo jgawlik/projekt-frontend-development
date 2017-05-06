@@ -48,9 +48,9 @@ export class CosmeticAddComponent implements OnInit {
   ngOnInit() {
     this.getCategories();
     this.myForm = this.fb.group({
-          'name': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-          'ingredients': ['', Validators.required],
-          'producer': ['', Validators.required],
+          'name': [null, Validators.compose([Validators.required, Validators.minLength(3)])],
+          'ingredients': [null, Validators.required],
+          'producer': [null, Validators.required],
           'price': [null, Validators.required, Validators.pattern('\d*\.?\d*')],
           'category': [null, Validators.required],
         });

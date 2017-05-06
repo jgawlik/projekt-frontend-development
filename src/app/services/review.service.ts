@@ -42,7 +42,7 @@ export class ReviewService {
       .catch(this.handleError);
   }
 
-  create(review: string, nickname: string, cosmetic: Cosmetic, raiting: number): Observable<Review> {
+  create(review: string, nickname: string, raiting: number, cosmetic: Cosmetic): Observable<Review> {
     return this.http
       .post(this.reviewsUrl, JSON.stringify({
         review: review, nickname: nickname, cosmetic: cosmetic, raiting: raiting

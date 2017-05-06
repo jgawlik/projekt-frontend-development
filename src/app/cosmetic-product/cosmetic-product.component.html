@@ -1,6 +1,6 @@
 <div *ngIf="cosmetic">
   <div class="card">
-    <div class="card-header"> {{cosmetic.name}} </div>
+    <div class="card-header card-primary"> {{cosmetic.name}} </div>
     <div class="card-block">
       <table class="table table-bordered">
         <thead>
@@ -21,10 +21,9 @@
         </tbody>
       </table>
     </div>
-    <!--<app-review [data]="cosmetic" [allReviews] = "allReviews"></app-review>-->
 
     <div class="card" *ngIf="reviewsForCosmetic">
-      <div class="card-header"> Recenzje kosmetyku </div>
+      <div class="card-header card-success"> Recenzje kosmetyku </div>
       <div class="card-block">
         <table class="table table-bordered" *ngIf="reviewsForCosmetic.length > 0; else empty_reviews">
           <thead>
@@ -47,8 +46,35 @@
         </ng-template>
       </div>
     </div>
-
   </div>
+
+  <div class="card">
+      <div class="card-header card-info"> Dodaj recenzję kosmetyku </div>
+      <div class="card-block">
+        <form [formGroup]="myForm" (ngSubmit)="addReview()">
+        <div class="form-group">
+          <label for="nickname"> Nick </label>
+          <input [formControl]="myForm.controls['nickname']" type="text" class="form-control" id="nickname" name="nickname">
+ 
+        </div>
+        <div class="form-group">
+          <label for="review"> Recenzja </label>
+          <textarea [formControl]="myForm.controls['review']" type="text" class="form-control" id="review" name="review" rows="10">
+          </textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="raiting"> Ocena </label>
+          <select class="form-control" [formControl]="myForm.controls['raiting']" id="raiting" name="raiting">
+             <option *ngFor="let rate of raitings" [ngValue]="rate"> {{rate}} </option>
+          </select>
+         
+        </div>
+        <button type="submit" class="btn btn-info" [disabled]="!myForm.valid">Dodaj recenzję</button>
+      </form>
+      </div>
+  </div>
+
   <div class="card">
     <div class="card-block">
       <button type="button" class="btn btn-secondary" (click)="goBack()">Powrót</button>

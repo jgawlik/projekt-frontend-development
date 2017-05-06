@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewChecked, Inject, forwardRef } from '@angular/core';
-import { Cosmetic, Category, Review } from './../data-models';
+import { FormControl, FormGroup, FormBuilder, AbstractControl, Validators } from '@angular/forms';
+import { Cosmetic, Category, Review, raitings } from './../data-models';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { CosmeticService } from './../services/cosmetic.service';
@@ -15,6 +16,8 @@ import 'rxjs/add/operator/map';
 export class CosmeticProductComponent implements OnInit {
   cosmetic: Cosmetic;
   reviewsForCosmetic: Review[];
+  myForm: FormGroup;
+  raitings;
 
   constructor(
     private CosmeticService: CosmeticService,
@@ -22,6 +25,7 @@ export class CosmeticProductComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
+    private fb: FormBuilder
   ) { }
 
   getReviewsForCosmetic(cosmeticId: number) {
@@ -31,14 +35,29 @@ export class CosmeticProductComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.raitings = raitings;
     this.route.params.forEach((params: Params) => {
       let id = +params['id'];
       this.getReviewsForCosmetic(id);
       this.CosmeticService.getCosmeticObservable(id)
         .subscribe(cosmetic => this.cosmetic = cosmetic);
     });
+    this.myForm = this.fb.group({
+          'review': [null, Validators.compose([Validators.required, Validators.minLength(3)])],
+          'nickname': [null, Validators.compose([Validators.required, Validators.minLength(3)])],
+          'raiting': [null, Validators.required],
+        });
   }
 
+  addReview(): void {
+    if (this.myForm.invalid) {
+       return;
+    }
+    const formModel = this.myForm.value;
+    this.ReviewService.create(formModel.review, formModel.nickname, formModel.raiting, this.cosmetic)
+      .subscribe(newReview => this.reviewsForCosmetic.push(newReview));
+    this.myForm.reset();
+  }
 
   goBack(): void {
     this.location.back();
