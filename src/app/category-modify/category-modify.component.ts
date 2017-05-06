@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from './../data-models';
+import { Category, Cosmetic } from './../data-models';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { CategoryService } from './../services/category.service';
+import { CosmeticService } from './../services/cosmetic.service';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 
@@ -12,26 +13,37 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./category-modify.component.css']
 })
 export class CategoryModifyComponent implements OnInit {
-   category: Category;
+  category: Category;
+  cosmeticsForCategory: Cosmetic[];
 
-   constructor(
-      private CategoryService: CategoryService,
-      private route: ActivatedRoute,
-      private router: Router,
-      private location: Location,
-    ) {}
+  constructor(
+    private CategoryService: CategoryService,
+    private CosmeticService: CosmeticService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location,
+  ) { }
 
   ngOnInit() {
-     this.route.params
-        .switchMap((params: Params) => this.CategoryService.getCategory(+params['idCategory']))
-        .subscribe(category => this.category = category);
+    this.route.params
+      .switchMap((params: Params) => this.CategoryService.getCategory(+params['idCategory']))
+      .subscribe((category) => {
+        this.category = category;
+      });
   }
 
   save(): void {
     this.CategoryService.update(this.category)
-      .then(() => this.goBack());
-    // TODO
-    // Potrzebujemy jeszcze zaktualizować kategorię dla powiązanych kosmetyków
+      .subscribe(() => {
+        this.CosmeticService.getCosmeticsForCategory(this.category.id).subscribe(
+          (cosmetics) => {
+            cosmetics.forEach(element => {
+              element.category = this.category;
+              this.CosmeticService.update(element).subscribe(() => this.goBack());
+            });
+          }
+        );
+      });
   }
 
   goBack(): void {

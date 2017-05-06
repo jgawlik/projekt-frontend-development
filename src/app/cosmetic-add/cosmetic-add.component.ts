@@ -31,7 +31,7 @@ export class CosmeticAddComponent implements OnInit {
   getCategories(): void {
     this.CategoryService
       .getCategories()
-      .then(categories => this.categories = categories);
+      .subscribe(categories => this.categories = categories);
   }
 
   getCategoryById(id: number): Category {
@@ -48,17 +48,17 @@ export class CosmeticAddComponent implements OnInit {
   ngOnInit() {
     this.getCategories();
     this.myForm = this.fb.group({
-          'name': [null, Validators.compose([Validators.required, Validators.minLength(3)])],
-          'ingredients': [null, Validators.required],
-          'producer': [null, Validators.required],
-          'price': [null, Validators.required, Validators.pattern('\d*\.?\d*')],
-          'category': [null, Validators.required],
-        });
+      'name': [null, Validators.compose([Validators.required, Validators.minLength(3)])],
+      'ingredients': [null, Validators.required],
+      'producer': [null, Validators.required],
+      'price': [null, Validators.compose([Validators.required, Validators.pattern('\d*\.?\d*')])],
+      'category': [null, Validators.required],
+    });
   }
 
   save(): void {
     if (this.myForm.invalid) {
-       return;
+      return;
     }
     const formModel = this.myForm.value;
     const newCategory = this.getCategoryById(formModel.category);
@@ -67,6 +67,6 @@ export class CosmeticAddComponent implements OnInit {
   }
 
   goBack(): void {
-        this.location.back();
+    this.location.back();
   }
 }

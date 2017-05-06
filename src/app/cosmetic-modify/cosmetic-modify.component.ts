@@ -31,7 +31,7 @@ export class CosmeticModifyComponent implements OnInit {
   getCategories(): void {
     this.CategoryService
       .getCategories()
-      .then(categories => this.categories = categories);
+      .subscribe(categories => this.categories = categories);
   }
 
   getCategoryById(id: number): Category {

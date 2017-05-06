@@ -13,7 +13,7 @@ export class CategoryPanelComponent implements OnInit {
   categoryList: Category[];
   cosmeticsList: Cosmetic[];
   message: string;
-  showForm: boolean = false;
+  showForm = false;
 
   constructor(
     private router: Router,
@@ -23,7 +23,7 @@ export class CategoryPanelComponent implements OnInit {
   getCategories(): void {
      this.CategoryService
         .getCategories()
-        .then(categories => this.categoryList = categories);
+        .subscribe(categories => this.categoryList = categories);
   }
 
   getCosmetics(): void {
@@ -55,7 +55,7 @@ export class CategoryPanelComponent implements OnInit {
       return;
     }
     this.CategoryService.create(categoryName)
-      .then(category => {
+      .subscribe(category => {
         this.categoryList.push(category);
         this.showForm = false;
       });
@@ -67,7 +67,7 @@ export class CategoryPanelComponent implements OnInit {
     if (ifAnyCosmeticHasThisCat.length === 0) {
       this.CategoryService
           .delete(category.id)
-          .then(() => {
+          .subscribe(() => {
             this.categoryList = this.categoryList.filter(h => h !== category);
           });
         this.message = 'Usunięto kategorię o id ' + category.id;

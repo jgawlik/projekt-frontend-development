@@ -13,12 +13,12 @@ export class ReviewService {
 
   constructor(private http: Http) { }
 
-  getReviewsForCosmetic(cosmeticId: number) {
+  getReviewsForCosmetic(cosmeticId: number): Observable<Review[]> {
     return this.http.get(this.reviewsUrl)
-      .map(res => <Review[]> res.json().data)
+      .map(res => <Review[]>res.json().data)
       .map((reviews) => {
         return reviews.filter((reviews) => reviews.cosmetic.id === cosmeticId);
-          })
+      })
       .catch(this.handleError);
   }
   getReviews(): Observable<Review[]> {

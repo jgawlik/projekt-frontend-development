@@ -1,57 +1,54 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 import { Category } from './../data-models';
 
 @Injectable()
 export class CategoryService {
   private categoriesUrl = 'api/categories';  // URL to web api
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new Headers({ 'Content-Type': 'application/json' });
 
   constructor(private http: Http) { }
 
-  getCategories(): Promise<Category[]> {
+  getCategories(): Observable<Category[]> {
     return this.http.get(this.categoriesUrl)
-                .toPromise()
-                .then(response => response.json().data as Category[])
-                .catch(this.handleError);
-  }
-
-  getCategory(id: number): Promise<Category> {
-      const url = `${this.categoriesUrl}/${id}`;
-      return this.http.get(url)
-        .toPromise()
-        .then(response => response.json().data as Category)
-        .catch(this.handleError);
-  }
-
-  delete(id: number): Promise<void> {
-    const url = `${this.categoriesUrl}/${id}`;
-    return this.http.delete(url, {headers: this.headers})
-      .toPromise()
-      .then(() => null)
+      .map(response => response.json().data as Category[])
       .catch(this.handleError);
   }
 
-  update(category: Category): Promise<Category> {
+  getCategory(id: number): Observable<Category> {
+    const url = `${this.categoriesUrl}/${id}`;
+    return this.http.get(url)
+      .map(response => response.json().data as Category)
+      .catch(this.handleError);
+  }
+
+  delete(id: number): Observable<void> {
+    const url = `${this.categoriesUrl}/${id}`;
+    return this.http.delete(url, { headers: this.headers })
+      .map(() => null)
+      .catch(this.handleError);
+  }
+
+  update(category: Category): Observable<Category> {
     const url = `${this.categoriesUrl}/${category.id}`;
     return this.http
-      .put(url, JSON.stringify(category), {headers: this.headers})
-      .toPromise()
-      .then(() => category)
+      .put(url, JSON.stringify(category), { headers: this.headers })
+      .map(() => category)
       .catch(this.handleError);
   }
 
-  create(categoryName: string): Promise<Category> {
-      return this.http
-        .post(this.categoriesUrl, JSON.stringify({categoryName: categoryName}), {headers: this.headers})
-        .toPromise()
-        .then(res => res.json().data as Category)
-        .catch(this.handleError);
+  create(categoryName: string): Observable<Category> {
+    return this.http
+      .post(this.categoriesUrl, JSON.stringify({ categoryName: categoryName }), { headers: this.headers })
+      .map(res => res.json().data as Category)
+      .catch(this.handleError);
   }
-  private handleError(error: any): Promise<any> {
+  private handleError(error: any): Observable<any> {
     console.error('Wystąpił błąd', error);
-    return Promise.reject(error.message || error);
+    return Observable.throw(error.message || error);
   }
 }

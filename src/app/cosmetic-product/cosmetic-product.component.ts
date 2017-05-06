@@ -39,7 +39,7 @@ export class CosmeticProductComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       let id = +params['id'];
       this.getReviewsForCosmetic(id);
-      this.CosmeticService.getCosmeticObservable(id)
+      this.CosmeticService.getCosmetic(id)
         .subscribe(cosmetic => this.cosmetic = cosmetic);
     });
     this.myForm = this.fb.group({
