@@ -5,7 +5,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { CosmeticService } from './../services/cosmetic.service';
 import { CategoryService } from './../services/category.service';
-import { formErrors, validationMessages } from './../various/validationCosmetic';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 

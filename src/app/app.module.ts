@@ -7,6 +7,7 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { MockedDatabaseService } from './mocked-database.service';
 
 import { AppComponent } from './app.component';
+import { CosmeticAddComponent } from './cosmetic-add/cosmetic-add.component';
 import { CosmeticPanelComponent } from './cosmetic-panel/cosmetic-panel.component';
 import { CosmeticProductComponent } from './cosmetic-product/cosmetic-product.component';
 import { CosmeticModifyComponent } from './cosmetic-modify/cosmetic-modify.component';
@@ -17,7 +18,7 @@ import { RoutingModule } from './routing.module';
 import { CategoryService } from './services/category.service';
 import { ReviewService } from './services/review.service';
 import { CosmeticService } from './services/cosmetic.service';
-import { CosmeticAddComponent } from './cosmetic-add/cosmetic-add.component';
+
 
 @NgModule({
   declarations: [
