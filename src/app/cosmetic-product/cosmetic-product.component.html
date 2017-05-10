@@ -16,7 +16,7 @@
             <td> {{cosmetic.category.categoryName }} </td>
             <td> {{cosmetic.ingredients}} </td>
             <td> {{cosmetic.producer}} </td>
-            <td> {{cosmetic.price}} </td>
+            <td> {{cosmetic.nickname}} </td>
           </tr>
         </tbody>
       </table>
@@ -49,30 +49,53 @@
   </div>
 
   <div class="card">
-      <div class="card-header card-info"> Dodaj recenzję kosmetyku </div>
-      <div class="card-block">
-        <form [formGroup]="myForm" (ngSubmit)="addReview()">
+    <div class="card-header card-info"> Dodaj recenzję kosmetyku </div>
+    <div class="card-block">
+      <form [formGroup]="myForm" (ngSubmit)="addReview()">
         <div class="form-group">
           <label for="nickname"> Nick </label>
-          <input [formControl]="myForm.controls['nickname']" type="text" class="form-control" id="nickname" name="nickname">
- 
+          <input [formControl]="nickname" type="text" class="form-control" id="nickname" name="nickname">
+          <div *ngIf="nickname.errors && (nickname.dirty || nickname.touched)" class="alert alert-danger">
+            <div [hidden]="!nickname.hasError('required')">
+              Nick jest wymagany!
+            </div>
+            <div [hidden]="!nickname.hasError('minlength')">
+              Nick musi mieć co najmniej 2 znaki!
+            </div>
+          </div>
         </div>
+
         <div class="form-group">
           <label for="review"> Recenzja </label>
-          <textarea [formControl]="myForm.controls['review']" type="text" class="form-control" id="review" name="review" rows="10">
+          <textarea [formControl]="review" type="text" class="form-control" id="review" name="review" rows="10">
           </textarea>
+          <div *ngIf="review.errors && (review.dirty || review.touched)" class="alert alert-danger">
+            <div [hidden]="!review.hasError('required')">
+              Treść recenzji jest wymagana!
+            </div>
+            <div [hidden]="!review.hasError('minlength')">
+              Treść recenzji musi mieć co najmniej 2 znaki!
+            </div>
+            <div [hidden]="!review.hasError('maxlength')">
+              Treść recenzji nie może mieć więcej niż 300 znaków!
+            </div>
+          </div>
         </div>
-        
+
         <div class="form-group">
           <label for="raiting"> Ocena </label>
-          <select class="form-control" [formControl]="myForm.controls['raiting']" id="raiting" name="raiting">
+          <select class="form-control" [formControl]="raiting" id="raiting" name="raiting">
              <option *ngFor="let rate of raitings" [ngValue]="rate"> {{rate}} </option>
           </select>
-         
+          <div *ngIf="raiting.errors && (raiting.dirty || raiting.touched)" class="alert alert-danger">
+            <div [hidden]="!nickname.hasError('required')">
+              Ocena kosmetyku jest wymagana!
+            </div>
+          </div>
         </div>
         <button type="submit" class="btn btn-info" [disabled]="!myForm.valid">Dodaj recenzję</button>
       </form>
-      </div>
+    </div>
   </div>
 
   <div class="card">

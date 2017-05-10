@@ -3,32 +3,58 @@
     <div class="card-block">
       <form [formGroup]="myForm" (ngSubmit)="save()">
         <div class="form-group">
-          <label for="name"> Nazwa </label>
-          <input [formControl]="myForm.controls['name']" type="text" class="form-control" id="name" name="name">
-          <!--<div *ngIf="name.hasError('required')" class="alert alert-danger"> Nazwa jest wymaga!</div>-->
+        <label for="name"> Nazwa </label>
+        <input [formControl]="name" type="text" class="form-control" id="name" name="name">
+        <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
+          <div [hidden]="!name.hasError('required')">
+            Nazwa kategori jest wymagana!
+          </div>
+          <div [hidden]="!name.hasError('minlength')">
+            Nazwa kategori musi mieć co najmniej 3 znaki
+          </div>
         </div>
-        <div class="form-group">
-          <label for="ingredients"> Składniki </label>
-          <input [formControl]="myForm.controls['ingredients']" type="text" class="form-control" id="ingredients" name="ingredients">
-           <!--<div *ngIf="ingredients.hasError('required')" class="alert alert-danger"> Lista składników jest wymagana!</div>-->
+      </div>
+      <div class="form-group">
+        <label for="ingredients"> Składniki </label>
+        <input [formControl]="ingredients" type="text" class="form-control" id="ingredients" name="ingredients">
+        <div *ngIf="ingredients.errors && (ingredients.dirty || ingredients.touched)" class="alert alert-danger">
+          <div [hidden]="!ingredients.hasError('required')">
+            Składniki są wymagane!
+          </div>
+           <div [hidden]="!ingredients.hasError('minlength')">
+            Nazwa kategori musi mieć co najmniej 5 znaków
+          </div>
         </div>
-        <div class="form-group">
-          <label for="producer"> Marka </label>
-          <input [formControl]="myForm.controls['producer']" type="text" class="form-control" id="producer" name="producer">
-          <!--<div *ngIf="producer.hasError('required')" class="alert alert-danger"> Marka jest wymaga!</div>-->
+      </div>
+      <div class="form-group">
+        <label for="producer"> Marka </label>
+        <input [formControl]="producer" type="text" class="form-control" id="producer" name="producer">
+        <div *ngIf="producer.errors && (producer.dirty || producer.touched)" class="alert alert-danger">
+          <div [hidden]="!producer.hasError('required')">
+            Marka jest wymagana!
+          </div>
         </div>
-        <div class="form-group">
-          <label for="price"> Cena </label>
-          <input [formControl]="myForm.controls['price']" type="number" class="form-control" id="price" name="price">
-          <!--<div *ngIf="price.hasError('required')" class="alert alert-danger"> Cena jest wymaga!</div>-->
+      </div>
+      <div class="form-group">
+        <label for="price"> Cena </label>
+        <input [formControl]="price" type="number" class="form-control" id="price" name="price">
+        <div *ngIf="price.errors && (price.dirty || price.touched)" class="alert alert-danger">
+          <div [hidden]="!price.hasError('required')">
+            Cena jest wymagana!
+          </div>
         </div>
-        <div class="form-group">
-          <label for="category"> Kategoria </label>
-          <select class="form-control" [formControl]="myForm.controls['category']" id="category" required>
+      </div>
+      <div class="form-group">
+        <label for="category"> Kategoria </label>
+        <select class="form-control" [formControl]="category" id="category" required>
              <option *ngFor="let cat of categories" [ngValue]="cat.id"> {{cat.categoryName}} </option>
           </select>
-          <!--<div *ngIf="category.hasError('required')" class="alert alert-danger"> Kategoria jest wymaga!</div>-->
+          <div *ngIf="category.errors && (category.dirty || category.touched)" class="alert alert-danger">
+          <div [hidden]="!category.hasError('required')">
+            Kategoria jest wymagana!
+          </div>
         </div>
+      </div>
         <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Zapisz</button>
         <button type="button" class="btn btn-secondary" (click)="goBack()">Powrót</button>
       </form>

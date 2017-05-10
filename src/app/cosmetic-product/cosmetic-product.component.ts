@@ -19,6 +19,10 @@ export class CosmeticProductComponent implements OnInit {
   myForm: FormGroup;
   raitings;
 
+  review: AbstractControl;
+  nickname: AbstractControl;
+  raiting: AbstractControl;
+
   constructor(
     private CosmeticService: CosmeticService,
     private ReviewService: ReviewService,
@@ -43,15 +47,19 @@ export class CosmeticProductComponent implements OnInit {
         .subscribe(cosmetic => this.cosmetic = cosmetic);
     });
     this.myForm = this.fb.group({
-          'review': [null, Validators.compose([Validators.required, Validators.minLength(3)])],
-          'nickname': [null, Validators.compose([Validators.required, Validators.minLength(3)])],
-          'raiting': [null, Validators.required],
-        });
+      'review': [null, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(300)])],
+      'nickname': [null, Validators.compose([Validators.required, Validators.minLength(2)])],
+      'raiting': [null, Validators.required],
+    });
+
+    this.review = this.myForm.controls['review'];
+    this.nickname = this.myForm.controls['nickname'];
+    this.raiting = this.myForm.controls['raiting'];
   }
 
   addReview(): void {
     if (this.myForm.invalid) {
-       return;
+      return;
     }
     const formModel = this.myForm.value;
     this.ReviewService.create(formModel.review, formModel.nickname, formModel.raiting, this.cosmetic)

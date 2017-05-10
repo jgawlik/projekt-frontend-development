@@ -19,6 +19,12 @@ export class CosmeticAddComponent implements OnInit {
   categories: Category[];
   myForm: FormGroup;
 
+  name: AbstractControl;
+  ingredients: AbstractControl;
+  producer: AbstractControl;
+  price: AbstractControl;
+  category: AbstractControl;
+
   constructor(
     private CosmeticService: CosmeticService,
     private CategoryService: CategoryService,
@@ -49,11 +55,17 @@ export class CosmeticAddComponent implements OnInit {
     this.getCategories();
     this.myForm = this.fb.group({
       'name': [null, Validators.compose([Validators.required, Validators.minLength(3)])],
-      'ingredients': [null, Validators.required],
+      'ingredients': [null, Validators.compose([Validators.required, Validators.minLength(5)])],
       'producer': [null, Validators.required],
-      'price': [null, Validators.compose([Validators.required, Validators.pattern('\d*\.?\d*')])],
+      'price': [null, Validators.required],
       'category': [null, Validators.required],
     });
+
+    this.name = this.myForm.controls['name'];
+    this.ingredients = this.myForm.controls['ingredients'];
+    this.producer = this.myForm.controls['producer'];
+    this.price = this.myForm.controls['price'];
+    this.category = this.myForm.controls['category'];
   }
 
   save(): void {
