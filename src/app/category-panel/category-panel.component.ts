@@ -14,6 +14,7 @@ export class CategoryPanelComponent implements OnInit {
   cosmeticsList: Cosmetic[];
   message: string;
   showForm = false;
+  newCategory = new Category();
 
   constructor(
     private router: Router,
@@ -46,16 +47,9 @@ export class CategoryPanelComponent implements OnInit {
       return returnArray;
   }
 
-
-
-  addNewCategory(categoryName: string, event: Event): void {
-    event.preventDefault();
-    categoryName = categoryName.trim();
-    if (!categoryName || categoryName.length === 0) {
-      return;
-    }
-    this.CategoryService.create(categoryName)
-      .subscribe(category => {
+  addNewCategory(): void {
+    this.CategoryService.create(this.newCategory.categoryName)
+     .subscribe(category => {
         this.categoryList.push(category);
         this.showForm = false;
       });

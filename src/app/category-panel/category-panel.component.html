@@ -1,43 +1,53 @@
+<div *ngIf="message">
+  <p>
+    <ngb-alert [dismissible]="false">
+      <strong>Uwaga!</strong> {{message}}
+    </ngb-alert>
+  </p>
+</div>
 
-  <div *ngIf="message">
-    <p>
-      <ngb-alert [dismissible]="false">
-        <strong>Uwaga!</strong>
-        {{message}}
-      </ngb-alert>
-    </p>
-  </div>
+<div class="card">
+  <div class="card-header"> Lista kategori kosmetyków </div>
+  <div class="card-block">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th> Kategoria </th>
+          <th> Akcje </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categoryList">
+          <td> <span class="badge"> {{category.id}} </span> {{category.categoryName}} </td>
+          <td>
+            <a class="btn btn-warning" [routerLink]="['/categories/details', category.id]" role="button">Edycja</a>
+            <button class="btn btn-danger" (click)="delete(category); $event.stopPropagation()">Usuń</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a class="btn btn-success" (click)="showForm = true" role="button">Dodaj nową kategorię </a>
 
-  <div class="card">
-    <div class="card-header"> Lista kategori kosmetyków </div>
-    <div class="card-block">
-        <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th> Kategoria </th>
-                <th> Akcje </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let category of categoryList">
-                <td> <span class="badge"> {{category.id}} </span> {{category.categoryName}} </td>
-                <td>
-                  <a class="btn btn-warning" [routerLink]="['/categories/details', category.id]" role="button">Edycja</a>
-                  <button class="btn btn-danger" (click)="delete(category); $event.stopPropagation()">Usuń</button>
-                </td>
-              </tr>
-            </tbody>
-        </table>
-        <a class="btn btn-success" (click)="showForm = true" role="button">Dodaj nową kategorię </a>
-
-        <div [hidden]="!showForm">
-          <form #categoryForm="ngForm" (ngSubmit)="addNewCategory(categoryName.value, $event)">
-            <div class="form-group">
-              <label for="categoryName"> Nazwa kategorii </label>
-              <input #categoryName type="text" class="form-control" id="categoryName" name="categoryName" placeholder="nazwa kategorii">
+    <div [hidden]="!showForm">
+        <form #newCategoryForm="ngForm" (ngSubmit)="addNewCategory()">
+        <div class="form-group">
+          <label for="categoryName"> Nazwa kategorii </label>
+          <input [(ngModel)]="newCategory.categoryName" #categoryName="ngModel" type="text" class="form-control" id="categoryName" name="categoryName" placeholder="nazwa kategorii"
+            required minlength="3" maxlength="30">
+          <div *ngIf="categoryName.errors && (categoryName.dirty || categoryName.touched)" class="alert alert-danger">
+            <div [hidden]="!categoryName.errors.required">
+              Nazwa kategori jest wymagana!
             </div>
-            <button type="submit" class="btn btn-primary">Dodaj</button>
-          </form>
-        </div>
+            <div [hidden]="!categoryName.errors.minlength">
+              Nazwa kategori musi mieć co najmniej 3 znaki
+            </div>
+            <div [hidden]="!categoryName.errors.maxlength">
+              Nazwa kategori nie może być dłuższa niż 30 znaków.
+            </div>
+          </div>
     </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!newCategoryForm.form.valid">Dodaj</button>
+    </form>
   </div>
+</div>
+</div>

@@ -15,6 +15,7 @@ import 'rxjs/add/operator/map';
 export class CategoryModifyComponent implements OnInit {
   category: Category;
   cosmeticsForCategory: Cosmetic[];
+  // existingCategoriesName: Array<string> = [];
 
   constructor(
     private CategoryService: CategoryService,
@@ -29,6 +30,7 @@ export class CategoryModifyComponent implements OnInit {
       .switchMap((params: Params) => this.CategoryService.getCategory(+params['idCategory']))
       .subscribe((category) => {
         this.category = category;
+        // this.getExistingCategoryNamesWithoutEditing(this.category.id);
       });
   }
 
@@ -46,8 +48,18 @@ export class CategoryModifyComponent implements OnInit {
       });
   }
 
+  // getExistingCategoryNamesWithoutEditing(editingCategoryId: number) {
+  //   this.CategoryService.getCategories()
+  //     .subscribe((categories) => {
+  //       categories.forEach(element => {
+  //         if (element.id !== editingCategoryId) {
+  //           this.existingCategoriesName.push(element.categoryName);
+  //         }
+  //       });
+  //     });
+  // }
+
   goBack(): void {
     this.location.back();
   }
-
 }

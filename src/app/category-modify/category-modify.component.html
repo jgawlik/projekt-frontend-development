@@ -2,12 +2,25 @@
   <div class="card" *ngIf="category;else button_back">
     <div class="card-header"> Edycja kategori o id {{category.id}} </div>
     <div class="card-block">
+      <!-- Formularz typu template-driven -->
       <form #categoryForm="ngForm" (ngSubmit)="save()">
         <div class="form-group">
           <label for="categoryName"> Nazwa kategorii </label>
-          <input [(ngModel)]="category.categoryName" type="text" class="form-control" id="categoryName" name="categoryName" placeholder="nazwa kategorii">
+          <input [(ngModel)]="category.categoryName" #categoryName="ngModel" minlength="3" maxlength="30" required type="text" class="form-control"
+            id="categoryName" name="categoryName">
+          <div *ngIf="categoryName.errors && (categoryName.dirty || categoryName.touched)" class="alert alert-danger">
+            <div [hidden]="!categoryName.errors.required">
+              Nazwa kategori jest wymagana!
+            </div>
+            <div [hidden]="!categoryName.errors.minlength">
+              Nazwa kategori musi mieć co najmniej 3 znaki
+            </div>
+            <div [hidden]="!categoryName.errors.maxlength">
+              Nazwa kategori nie może być dłuższa niż 30 znaków.
+            </div>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary">Zapisz</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!categoryForm.form.valid">Zapisz</button>
         <button type="button" class="btn btn-secondary" (click)="goBack()">Powrót</button>
       </form>
     </div>
