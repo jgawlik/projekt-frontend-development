@@ -1,12 +1,10 @@
-import { Component, OnInit, AfterViewChecked, Inject, forwardRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, AbstractControl, Validators } from '@angular/forms';
 import { Cosmetic, Category, Review, raitings } from './../data-models';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { CosmeticService } from './../services/cosmetic.service';
 import { ReviewService } from './../services/review.service';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-cosmetic-product',

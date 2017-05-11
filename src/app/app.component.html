@@ -1,15 +1,21 @@
 <div class="container-fluid">
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-        <div class="navbar">
+        <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+            aria-controls="navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand">Nawigacja</a>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
             <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/cosmetics">Kosmetyki</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/categories">Kategorie</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/cosmetics">Kosmetyki</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/categories">Kategorie</a>
+                </li>
             </ul>
         </div>
     </nav>
-    <router-outlet></router-outlet>      
+    <router-outlet></router-outlet>
 </div>

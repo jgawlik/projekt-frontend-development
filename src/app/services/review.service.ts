@@ -17,7 +17,7 @@ export class ReviewService {
     return this.http.get(this.reviewsUrl)
       .map(res => <Review[]>res.json().data)
       .map((reviews) => {
-        return reviews.filter((reviews) => reviews.cosmetic.id === cosmeticId);
+        return reviews.filter((reviewss) => reviewss.cosmetic.id === cosmeticId);
       })
       .catch(this.handleError);
   }
