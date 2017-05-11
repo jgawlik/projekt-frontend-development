@@ -88,7 +88,7 @@
              <option *ngFor="let rate of raitings" [ngValue]="rate"> {{rate}} </option>
           </select>
           <div *ngIf="raiting.errors && (raiting.dirty || raiting.touched)" class="alert alert-danger">
-            <div [hidden]="!nickname.hasError('required')">
+            <div [hidden]="!raiting.hasError('required')">
               Ocena kosmetyku jest wymagana!
             </div>
           </div>
