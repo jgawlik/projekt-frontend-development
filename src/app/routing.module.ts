@@ -11,7 +11,7 @@ import { CategoryPanelComponent } from './category-panel/category-panel.componen
 import { CategoryModifyComponent } from './category-modify/category-modify.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/cosmetics', pathMatch: 'full' },
+  { path: '', redirectTo: 'cosmetics', pathMatch: 'full' },
   { path: 'cosmetics', component: CosmeticPanelComponent },
   { path: 'categories', component: CategoryPanelComponent },
   { path: 'categories/details/:idCategory', component: CategoryModifyComponent },
